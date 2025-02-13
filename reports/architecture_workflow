@@ -1,0 +1,177 @@
+High-Level Architecture
+1. Data Ingestion
+Source: Customer transaction data (e.g., from banking systems, CRM, or external APIs).
+
+Azure Services:
+
+Azure Data Factory: Orchestrates data pipelines to ingest data from various sources.
+
+Azure Event Hubs: Real-time ingestion of streaming transaction data.
+
+Azure Blob Storage: Stores raw transaction data files (e.g., CSV, JSON).
+
+Workflow:
+Transaction data is ingested in real-time via Azure Event Hubs or batch-processed using Azure Data Factory.
+
+Raw data is stored in Azure Blob Storage for further processing.
+
+2. Data Processing
+Azure Services:
+
+Azure Databricks: For data preprocessing, feature engineering, and collaborative filtering.
+
+Azure Synapse Analytics: For large-scale data processing and SQL-based transformations.
+
+Azure Functions: For lightweight, event-driven processing (e.g., triggering data pipelines).
+
+Workflow:
+Raw data is cleaned, transformed, and enriched using Azure Databricks or Azure Synapse Analytics.
+
+Feature engineering is performed to create customer profiles (e.g., tenure, transaction frequency, spending patterns).
+
+Data is prepared for machine learning and stored in a structured format.
+
+3. Data Storage
+Azure Services:
+
+Azure SQL Database: Stores structured customer and transaction data.
+
+Azure Cosmos DB: Stores NoSQL data for flexible schema (e.g., customer behavior logs).
+
+Azure Data Lake Storage: Stores processed data for machine learning and analytics.
+
+Workflow:
+Processed data is stored in Azure SQL Database for structured queries.
+
+Customer behavior logs and metadata are stored in Azure Cosmos DB for fast, flexible access.
+
+Large datasets for machine learning are stored in Azure Data Lake Storage.
+
+4. Machine Learning
+Azure Services:
+
+Azure Machine Learning (AML): For training and deploying the sequential recommendation model.
+
+Azure Cognitive Services: For integrating LLMs (e.g., OpenAI GPT) to generate personalized messages.
+
+Azure Kubernetes Service (AKS): For deploying the recommendation model as a scalable API.
+
+Workflow:
+The sequential recommendation model (e.g., LSTM, Transformer) is trained using Azure Machine Learning.
+
+The trained model is deployed as a REST API using Azure Kubernetes Service (AKS).
+
+Azure Cognitive Services is used to integrate OpenAI GPT for generating personalized messages.
+
+5. User Interaction
+Azure Services:
+
+Azure App Service: Hosts the Streamlit web application for user interaction.
+
+Azure API Management: Manages APIs for the recommendation system and LLM integration.
+
+Azure Active Directory (AAD): Provides authentication and authorization for secure access.
+
+Workflow:
+The Streamlit web application is hosted on Azure App Service.
+
+Users interact with the app to view recommendations and personalized messages.
+
+The app calls the recommendation API (hosted on AKS) and the LLM API (via Azure Cognitive Services) to generate results.
+
+Azure API Management ensures secure and scalable API access.
+
+6. Monitoring and Logging
+Azure Services:
+
+Azure Monitor: Tracks system performance, logs, and metrics.
+
+Azure Log Analytics: Provides insights into application and infrastructure logs.
+
+Application Insights: Monitors the performance of the Streamlit app and APIs.
+
+Workflow:
+Azure Monitor collects metrics and logs from all components (e.g., AKS, App Service, Databricks).
+
+Log Analytics is used to query and analyze logs for troubleshooting.
+
+Application Insights monitors the Streamlit app for performance and user behavior.
+
+7. Security and Compliance
+Azure Services:
+
+Azure Key Vault: Stores and manages secrets (e.g., API keys, database credentials).
+
+Azure Security Center: Provides threat protection and security recommendations.
+
+Azure Policy: Ensures compliance with organizational and regulatory standards.
+
+Workflow:
+Sensitive data (e.g., OpenAI API keys) is stored in Azure Key Vault.
+
+Azure Security Center monitors the system for vulnerabilities and threats.
+
+Azure Policy enforces compliance with data protection regulations (e.g., GDPR, PCI DSS).
+
+Workflow
+Step 1: Data Ingestion
+Transaction data is ingested from banking systems into Azure Event Hubs or Azure Blob Storage.
+
+Azure Data Factory orchestrates the ingestion process.
+
+Step 2: Data Processing
+Data is cleaned, transformed, and enriched using Azure Databricks or Azure Synapse Analytics.
+
+Features like customer tenure, transaction frequency, and spending patterns are extracted.
+
+Step 3: Data Storage
+Processed data is stored in Azure SQL Database and Azure Cosmos DB.
+
+Large datasets for machine learning are stored in Azure Data Lake Storage.
+
+Step 4: Machine Learning
+The sequential recommendation model is trained using Azure Machine Learning.
+
+The model is deployed as a REST API using Azure Kubernetes Service (AKS).
+
+Azure Cognitive Services integrates OpenAI GPT for personalized messages.
+
+Step 5: User Interaction
+The Streamlit web application is hosted on Azure App Service.
+
+Users interact with the app to view recommendations and personalized messages.
+
+APIs are managed and secured using Azure API Management.
+
+Step 6: Monitoring and Logging
+Azure Monitor, Log Analytics, and Application Insights track system performance and user behavior.
+
+Step 7: Security and Compliance
+Azure Key Vault manages secrets, while Azure Security Center and Azure Policy ensure security and compliance.
+
+Benefits of Using Azure
+Scalability: Azure services like AKS and Event Hubs scale automatically to handle large workloads.
+
+Security: Built-in security features (e.g., Key Vault, Security Center) protect sensitive data.
+
+Integration: Seamless integration between Azure services simplifies development and deployment.
+
+Cost-Effectiveness: Pay-as-you-go pricing ensures cost efficiency.
+
+Compliance: Azure meets global compliance standards (e.g., GDPR, HIPAA).
+
+Diagram
+Here’s a simplified diagram of the architecture:
+
+Copy
+[Data Sources] --> [Azure Event Hubs/Blob Storage] --> [Azure Databricks/Synapse Analytics]
+                      |                                       |
+                      v                                       v
+[Azure SQL Database] <--> [Azure Machine Learning] --> [Azure Kubernetes Service (AKS)]
+                      |                                       |
+                      v                                       v
+[Azure Cosmos DB] <--> [Azure Cognitive Services] --> [Azure App Service (Streamlit)]
+                      |                                       |
+                      v                                       v
+[Azure Monitor] <--> [Azure Security Center] <--> [Azure Key Vault]
+This architecture provides a robust, scalable, and secure solution for the banking product recommendation system using Azure resources.
